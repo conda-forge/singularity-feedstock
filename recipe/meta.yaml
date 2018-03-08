@@ -1,5 +1,5 @@
-{% set version = "2.4.2" %}
-{% set sha256 = "38ae774900d3349f14a7fed1101fd9bd0f7948160aff571fb1c49d52adefd31e" %}
+{% set version = "2.4.4" %}
+{% set sha256 = "b3314e93b8880affed4ab77890677931e1303755e13af2fbc579d7bf943dfbeb" %}
 
 package:
   name: singularity
