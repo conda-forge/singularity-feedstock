@@ -16,9 +16,9 @@ build:
 
 requirements:
   host:
-    - libarchive
+    - libarchive 3.3.*
   run:
-    - libarchive
+    - libarchive 3.3.*
 
 test:
   commands:
