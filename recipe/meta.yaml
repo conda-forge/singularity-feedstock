@@ -1,5 +1,5 @@
-{% set version = "2.4.6" %}
-{% set sha256 = "2d502e23a0c18f8f7f7d92278fc11931971443154e4b087c88540466efd93a8a" %}
+{% set version = "2.5.0" %}
+{% set sha256 = "5ff991a49a51e591bc9dc5c761b7a95c7e27cb794c98d4741d6af725dc7ba7c5" %}
 
 package:
   name: singularity
@@ -13,6 +13,14 @@ source:
 build:
   number: 0
   skip: true  # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - libarchive 3.3.*
+  run:
+    - libarchive 3.3.*
 
 test:
   commands:
