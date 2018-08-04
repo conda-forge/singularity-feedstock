@@ -1,7 +1,7 @@
 About singularity
 =================
 
-Home: http://singularity.lbl.gov/
+Home: https://www.sylabs.io/singularity/
 
 Package license: BSD 3-Clause
 
