@@ -20,6 +20,7 @@ git tag v${PKG_VERSION}
 
 
 
+export CFLAGS="${CFLAGS} -I${PREFIX}/include"
 # configure
 ./mconfig \
   -v \
