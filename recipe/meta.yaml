@@ -6,8 +6,8 @@ package:
 
 source:
   - folder: src/github.com/sylabs/singularity
-    url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-v{{ version }}.tar.gz
-    sha256: 6d54daf74748018082e71774f0998a20d8242b8bda5d2c7d42573242556230a0
+    git_url: https://github.com/sylabs/singularity.git
+    git_rev: v{{ version }}
     patches:
       - 0001-use-c-ldflags-during-mconfig
 
