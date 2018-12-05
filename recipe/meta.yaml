@@ -1,14 +1,15 @@
-{% set version = "2.6.0" %}
-{% set sha256 = "7c425211a099f6fa6f74037e6e17be58fb5923b0bd11aea745e48ef83c488b49" %}
+{% set version = "3.0.0" %}
 
 package:
   name: singularity
   version: {{ version }}
 
 source:
-  fn: singularity-{{ version }}.tar.gz
-  url: https://github.com/sylabs/singularity/releases/download/{{ version }}/singularity-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  - folder: src/github.com/sylabs/singularity
+    url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-v{{ version }}.tar.gz
+    sha256: 6d54daf74748018082e71774f0998a20d8242b8bda5d2c7d42573242556230a0
+    patches:
+      - 0001-use-c-ldflags-during-mconfig
 
 build:
   number: 1000
@@ -16,11 +17,18 @@ build:
 
 requirements:
   build:
+    - {{ compiler('go') }}
     - {{ compiler('c') }}
+    - make
   host:
+    - pkg-config
+    - libuuid
     - libarchive 3.3.*
+    - openssl
   run:
+    - libuuid
     - libarchive 3.3.*
+    - openssl
 
 test:
   commands:
@@ -31,7 +39,7 @@ about:
   home: https://www.sylabs.io/singularity/
   license: BSD 3-Clause
   license_family: BSD
-  license_file: LICENSE-LBNL.md
+  license_file: src/github.com/sylabs/singularity/LICENSE-LBNL.md
   summary: "Singularity: Application containers for Linux"
 
   description: |

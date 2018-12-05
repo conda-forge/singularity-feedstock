@@ -1,0 +1,22 @@
+diff --git a/mlocal/checks/project.chk b/mlocal/checks/project.chk
+index ada7518..f7d6d5e 100644
+--- a/mlocal/checks/project.chk
++++ b/mlocal/checks/project.chk
+@@ -288,7 +288,7 @@ fi
+ ########################
+ printf " checking: libssl+headers... "
+ if ! printf "#include <openssl/sha.h>\nint main() { }" | \
+-   $tgtcc -x c -o /dev/null -lcrypto - >/dev/null 2>&1; then
++   $tgtcc $CFLAGS $LDFLAGS -x c -o /dev/null -lcrypto - >/dev/null 2>&1; then
+ 	tgtstatic=0
+ 	echo "no"
+ 	echo
+@@ -304,7 +304,7 @@ fi
+ ########################
+ printf " checking: libuuid+headers... "
+ if ! printf "#include <uuid/uuid.h>\nint main() { }" | \
+-   $tgtcc -x c -o /dev/null -luuid - >/dev/null 2>&1; then
++   $tgtcc $CFLAGS $LDFLAGS -x c -o /dev/null -luuid - >/dev/null 2>&1; then
+ 	tgtstatic=0
+ 	echo "no"
+ 	echo
