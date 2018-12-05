@@ -1,6 +1,4 @@
 #!/bin/bash
-# Turn the work-folder into GOPATH
-export GOPATH=${SRC_DIR}
 export PATH=${GOPATH}/bin:$PATH
 pushd src/github.com/sylabs/${PKG_NAME}
 
