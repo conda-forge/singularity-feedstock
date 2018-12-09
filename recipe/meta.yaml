@@ -10,7 +10,7 @@ source:
     git_rev: v{{ version }}
     patches:
       - 0001-use-c-ldflags-during-mconfig
-      - 0002-disable-built-in-cni
+      - 0002-use-external-cni
 
 build:
   number: 1000
@@ -18,19 +18,22 @@ build:
 
 requirements:
   build:
-    - {{ compiler('go') }}
+    - {{ compiler('go') }} 1.11
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - make
   host:
     - pkg-config
     - libuuid
     - libarchive 3.3.*
+    - libseccomp
     - openssl
   run:
-    - cni >=0.6.0
+    # CNI version from singularity/Gopkg.lock
     - cni-plugins >=0.7.4
     - libuuid
     - libarchive 3.3.*
+    - libseccomp
     - openssl
 
 test:
@@ -40,6 +43,7 @@ test:
 
     # Ensure that built-in CNI is not installed
     - test ! -d $PREFIX/libexec/singularity/cni
+    - test ! -d $PREFIX/etc/singularity/network
 
 about:
   home: https://www.sylabs.io/singularity/
