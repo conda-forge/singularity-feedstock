@@ -7,17 +7,28 @@ pushd src/github.com/sylabs/${PKG_NAME}
 # bootstrap go dependencies
 go get -u github.com/golang/dep/cmd/dep
 
-export CFLAGS="${CFLAGS} -I${PREFIX}/include"
+# Create a C and CPP compiler for singularity
+cat > singularity-cc <<_EOF
+#!/usr/bin/env bash
+exec $CC -I${PREFIX}/include -L${PREFIX}/lib \$@
+_EOF
+chmod 755 singularity-cc
+
+cat > singularity-cxx <<_EOF
+#!/usr/bin/env bash
+exec $CPP -I${PREFIX}/include -L${PREFIX}/lib \$@
+_EOF
+chmod 755 singularity-cxx
+
+
 # configure
 ./mconfig \
   -v \
   -s \
   -S \
   -p $PREFIX \
-  -c "$CC" \
-  -C "$CC" \
-  -x "$CPP" \
-  -x "$CPP"
+  -c "${PWD}/singularity-cc" \
+  -x "${PWD}/singularity-cxx"
 
 pushd builddir
 # build

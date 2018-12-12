@@ -9,8 +9,7 @@ source:
     git_url: https://github.com/sylabs/singularity.git
     git_rev: v{{ version }}
     patches:
-      - 0001-use-c-ldflags-during-mconfig
-      - 0002-use-external-cni
+      - 0002-use-external-cni.diff
 
 build:
   number: 1000
@@ -22,6 +21,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
+    - libseccomp
   host:
     - pkg-config
     - libuuid
