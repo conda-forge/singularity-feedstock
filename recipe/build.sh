@@ -24,15 +24,15 @@ chmod 755 singularity-cxx
 # configure
 ./mconfig \
   -v \
-  -s \
-  -S \
   -p $PREFIX \
   -c "${PWD}/singularity-cc" \
   -x "${PWD}/singularity-cxx"
 
 pushd builddir
 # build
-make 
+export CGO_CPPFLAGS=${CPPFLAGS}
+export CGO_LDFLAGS=${LDFLAGS}
+make
 
 # install
 make install
