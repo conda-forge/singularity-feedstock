@@ -21,7 +21,6 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
-    - libseccomp
   host:
     - pkg-config
     - libuuid
