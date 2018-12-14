@@ -18,8 +18,9 @@ build:
 
 requirements:
   build:
-    - {{ compiler('go') }} 1.11
+    - {{ compiler('go') }}
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - make
   host:
     - pkg-config
