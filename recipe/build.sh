@@ -10,13 +10,13 @@ go get -u github.com/golang/dep/cmd/dep
 # Create a C and CPP compiler for singularity
 cat > singularity-cc <<_EOF
 #!/usr/bin/env bash
-exec $CC -I${PREFIX}/include -L${PREFIX}/lib \$@
+exec $CC -I${PREFIX}/include -L${PREFIX}/lib ${CFLAGS} ${LDFLAGS} \$@
 _EOF
 chmod 755 singularity-cc
 
 cat > singularity-cxx <<_EOF
 #!/usr/bin/env bash
-exec $CXX -I${PREFIX}/include -L${PREFIX}/lib \$@
+exec $CXX -I${PREFIX}/include -L${PREFIX}/lib ${CXXFLAGS} ${LDFLAGS} \$@
 _EOF
 chmod 755 singularity-cxx
 
