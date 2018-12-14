@@ -20,7 +20,8 @@ exec $CPP -I${PREFIX}/include -L${PREFIX}/lib \$@
 _EOF
 chmod 755 singularity-cxx
 
-
+export CPPFLAGS=${CPPFLAGS/-fno-plt/}
+export CFLAGS=${CFLAGS/-fno-plt/}
 # configure
 ./mconfig \
   -v \
