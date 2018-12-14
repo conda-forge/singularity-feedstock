@@ -20,8 +20,6 @@ exec $CPP -I${PREFIX}/include -L${PREFIX}/lib \$@
 _EOF
 chmod 755 singularity-cxx
 
-export CPPFLAGS=${CPPFLAGS/-fno-plt/}
-export CFLAGS=${CFLAGS/-fno-plt/}
 # configure
 ./mconfig \
   -v \
@@ -29,8 +27,8 @@ export CFLAGS=${CFLAGS/-fno-plt/}
   -c "${PWD}/singularity-cc" \
   -x "${PWD}/singularity-cxx"
 
-pushd builddir
 # build
+pushd builddir
 export CGO_CPPFLAGS=${CPPFLAGS}
 export CGO_LDFLAGS=${LDFLAGS}
 make
