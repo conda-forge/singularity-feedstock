@@ -38,8 +38,5 @@ make
 # install
 make install
 
-# Move Singularity Network configuration files to PREFIX/etc/cni/net.d
-mkdir -p $PREFIX/etc/cni/net.d
-for i in `find $PREFIX/etc/singularity/network -maxdepth 1 -type f`; do
-  mv $i $PREFIX/etc/cni/net.d
-done
+# Fix SUID processes
+find ${PREFIX}/libexec/singularity -type f -name '*-suid' -exec chmod u+s {} \;

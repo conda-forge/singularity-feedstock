@@ -1,3 +1,26 @@
+diff --git a/mconfig b/mconfig
+index 34930d6b..a75172f6 100755
+--- a/mconfig
++++ b/mconfig
+@@ -600,7 +600,6 @@ if [ "$found_modules" = "" ]; then
+ 	fi
+ fi
+ echo " found build modules:"
+-echo "CPPFLAGS :=" >> $makeit_makefile_base
+ # NOTE: parsed module (*.mconf) files only substitute var tgt_arch for now
+ for m in $found_modules; do
+ 	mod=`eval echo ${m##*./}`
+@@ -624,9 +623,7 @@ echo >> $makeit_makefile_base
+ 
+ # init LDFLAGS if static builds are supported
+ if [ "$hststatic" = "1" -a "$tgtstatic" = "1" ]; then
+-	echo "LDFLAGS := -static" >> $makeit_makefile_base
+-else
+-	echo "LDFLAGS :=" >> $makeit_makefile_base
++	echo "LDFLAGS += -static" >> $makeit_makefile_base
+ fi
+ echo >> $makeit_makefile_base
+ 
 diff --git a/mlocal/frags/common_opts.mk b/mlocal/frags/common_opts.mk
 index a44a3e0b..ba8fd199 100644
 --- a/mlocal/frags/common_opts.mk

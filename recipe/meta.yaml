@@ -1,4 +1,4 @@
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 
 package:
   name: singularity
@@ -11,6 +11,7 @@ source:
     patches:
       - 0001-append-to-environment-flags.diff
       - 0002-use-external-cni.diff
+      - 0003-fix-relocation.diff
 
 build:
   number: 1000
@@ -38,12 +39,13 @@ requirements:
 
 test:
   commands:
-    - which singularity
-    - singularity --help
-
     # Ensure that built-in CNI is not installed
     - test ! -d $PREFIX/libexec/singularity/cni
     - test ! -d $PREFIX/etc/singularity/network
+
+    - which singularity
+    - singularity --help
+    - singularity --verbose --debug run -u library://sylabsed/examples/lolcow
 
 about:
   home: https://www.sylabs.io/singularity/
