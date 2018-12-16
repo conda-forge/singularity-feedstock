@@ -40,3 +40,7 @@ make install
 
 # Fix SUID processes
 find ${PREFIX}/libexec/singularity -type f -name '*-suid' -exec chmod u+s {} \;
+
+# Make Empty session dir
+mkdir -p $PREFIX/var/singularity/mnt/session
+touch $PREFIX/var/singularity/mnt/session/.mkdir

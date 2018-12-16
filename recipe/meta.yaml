@@ -45,7 +45,10 @@ test:
 
     - which singularity
     - singularity --help
-    - singularity --verbose --debug run -u library://sylabsed/examples/lolcow
+
+    # UserNS test
+    - singularity build --sandbox lolcow docker://godlovedc/lolcow
+    - singularity --verbose --debug run --userns lolcow
 
 about:
   home: https://www.sylabs.io/singularity/
