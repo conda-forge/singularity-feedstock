@@ -39,16 +39,21 @@ requirements:
 
 test:
   commands:
-    # Ensure that built-in CNI is not installed
-    - test ! -d $PREFIX/libexec/singularity/cni
-    - test ! -d $PREFIX/etc/singularity/network
-
-    - which singularity
     - singularity --help
+
+    # Ensure we are using conda's CNI
+    - test ! -d $PREFIX/libexec/singularity/cni
+    - test -d $PREFIX/lib/cni
+
+    - test ! -d $PREFIX/etc/singularity/network
+    - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
 
     # UserNS test
     - singularity build --sandbox lolcow docker://godlovedc/lolcow
-    - singularity --verbose --debug run --userns lolcow
+    - |
+      if [[ -e /proc/self/ns/user ]]; then
+        singularity --verbose --debug run -u -C library://sylabsed/examples/lolcow
+      fi
 
 about:
   home: https://www.sylabs.io/singularity/

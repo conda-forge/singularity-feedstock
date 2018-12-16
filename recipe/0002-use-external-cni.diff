@@ -28,27 +28,19 @@ index f419f030..04e14ba2 100644
  .PHONY: cniplugins
  cniplugins:
 diff --git a/src/pkg/network/network.go b/src/pkg/network/network.go
-index 99638dca..c4721e3f 100644
+index 99638dca..470ef354 100644
 --- a/src/pkg/network/network.go
 +++ b/src/pkg/network/network.go
-@@ -10,7 +10,6 @@ import (
- 
- 	"github.com/containernetworking/cni/libcni"
- 	"github.com/containernetworking/cni/pkg/types"
--	"github.com/sylabs/singularity/src/pkg/buildcfg"
- 	"github.com/sylabs/singularity/src/pkg/util/env"
- )
- 
-@@ -47,10 +46,10 @@ type portMap struct {
+@@ -47,10 +47,10 @@ type portMap struct {
  }
  
  // DefaultCNIConfPath is the default directory to CNI network configuration files
 -var DefaultCNIConfPath = filepath.Join(buildcfg.SYSCONFDIR, "singularity", "network")
-+var DefaultCNIConfPath = filepath.Join(os.Getenv("CONDA_PREFIX"), "cni", "net.d")
++var DefaultCNIConfPath = filepath.Join(buildcfg.SYSCONFDIR, "cni", "net.d")
  
  // DefaultCNIPluginPath is the default directory to CNI plugins executables
 -var DefaultCNIPluginPath = filepath.Join(buildcfg.LIBEXECDIR, "singularity", "cni")
-+var DefaultCNIPluginPath = os.Getenv("CNI_PATH")
++var DefaultCNIPluginPath = filepath.Join(buildcfg.PREFIX, "lib", "cni")
  
  // AvailableNetworks lists configured networks in configuration path directory
  // provided by cniPath
