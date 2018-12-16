@@ -45,7 +45,7 @@ test:
 
     - which singularity
     - singularity --help
-    - singularity --verbose --debug run -u library://sylabsed/examples/lolcow
+    - singularity --verbose --debug run -u -C library://sylabsed/examples/lolcow
 
 about:
   home: https://www.sylabs.io/singularity/
