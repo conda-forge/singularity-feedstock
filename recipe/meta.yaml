@@ -36,6 +36,7 @@ requirements:
     - libarchive 3.3.*
     - libseccomp
     - openssl
+    - squashfs-tools
 
 test:
   commands:
