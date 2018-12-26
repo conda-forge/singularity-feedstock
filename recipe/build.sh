@@ -38,8 +38,8 @@ make
 # install
 make install
 
-# Fix SUID processes
-find ${PREFIX}/libexec/singularity -type f -name '*-suid' -exec chmod u+s {} \;
+# Add post-install script with message on how to grant the -suid piece
+cp $RECIPE_DIR/post-link.sh $PREFIX/bin/.$PKG_NAME-post-link.sh
 
 # Make Empty session dir
 mkdir -p $PREFIX/var/singularity/mnt/session
