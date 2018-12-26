@@ -53,7 +53,7 @@ test:
     - singularity build --sandbox lolcow docker://godlovedc/lolcow
     - |
       if [[ -e /proc/self/ns/user ]]; then
-        singularity --verbose --debug run -u -C library://sylabsed/examples/lolcow
+        singularity --verbose --debug run -u lolcow
       fi
 
 about:
