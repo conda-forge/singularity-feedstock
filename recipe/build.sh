@@ -1,7 +1,6 @@
 #!/bin/bash
 set -euf
 
-export PATH=${GOPATH}/bin:$PATH
 pushd src/github.com/sylabs/${PKG_NAME}
 
 # bootstrap go dependencies
