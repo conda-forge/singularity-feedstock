@@ -1,15 +1,17 @@
 build_number_decrement:
-- '1000'
+- '0'
+c_compiler:
+- gcc
+cgo_compiler:
+- go-cgo
 channel_sources:
-- conda-forge,defaults
+- conda-forge/label/gcc7,defaults
 channel_targets:
-- conda-forge main
+- conda-forge gcc7
 cxx_compiler:
-- toolchain_cxx
+- gxx
 docker_image:
-- condaforge/linux-anvil
-go_compiler:
-- go
+- condaforge/linux-anvil-comp7
 libuuid:
 - 2.32.1
 openssl:
@@ -20,7 +22,8 @@ pin_run_as_build:
   openssl:
     max_pin: x.x.x
 zip_keys:
-- - cxx_compiler
+- - c_compiler
+  - cxx_compiler
   - channel_sources
   - channel_targets
   - docker_image
