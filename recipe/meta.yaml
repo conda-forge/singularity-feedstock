@@ -19,22 +19,20 @@ build:
 
 requirements:
   build:
-    - {{ compiler('go') }}
+    - {{ compiler('cgo') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make
     - pkg-config
   host:
     - libuuid
-    - libarchive >=3.3.3,<3.4
+    - libarchive
     - libseccomp
     - openssl
   run:
     # CNI version from singularity/Gopkg.lock
     - cni-plugins >=0.7.4
     - libuuid
-    - libarchive >=3.3.3,<3.4
-    - libseccomp
     - openssl
     - squashfs-tools
 
