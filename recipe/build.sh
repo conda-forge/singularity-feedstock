@@ -27,10 +27,6 @@ chmod 755 singularity-cxx
 
 # build
 pushd builddir
-export CGO_CFLAGS="${CFLAGS}"
-export CGO_CPPFLAGS="${CPPFLAGS} -I${PREFIX}/include"
-export CGO_LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
-
 export LD_LIBRARY_PATH=${PREFIX}/lib
 make
 
