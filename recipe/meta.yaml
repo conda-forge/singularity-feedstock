@@ -21,7 +21,6 @@ requirements:
   build:
     - {{ compiler('cgo') }}
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
     - make
     - pkg-config
   host:

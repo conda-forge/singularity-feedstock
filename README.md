@@ -123,4 +123,5 @@ Feedstock Maintainers
 
 * [@bgruening](https://github.com/bgruening/)
 * [@jakirkham](https://github.com/jakirkham/)
+* [@sodre](https://github.com/sodre/)
 
