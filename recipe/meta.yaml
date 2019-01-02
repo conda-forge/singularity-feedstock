@@ -32,8 +32,6 @@ requirements:
   run:
     # CNI version from singularity/Gopkg.lock
     - cni-plugins >=0.7.4
-    - libuuid
-    - openssl
     - squashfs-tools
 
 test:
