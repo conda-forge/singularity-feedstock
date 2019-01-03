@@ -15,7 +15,7 @@ chmod 755 singularity-cc
 
 cat > singularity-cxx <<_EOF
 #!/usr/bin/env bash
-exec $CXX -I${PREFIX}/include -L${PREFIX}/lib \$@
+exec ${CXX:-/bin/false}- -I${PREFIX}/include -L${PREFIX}/lib \$@
 _EOF
 chmod 755 singularity-cxx
 
