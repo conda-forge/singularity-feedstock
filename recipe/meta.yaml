@@ -23,6 +23,7 @@ requirements:
     - {{ compiler('c') }}
     - make
     - pkg-config
+    - go-dep
   host:
     - libuuid
     - libarchive

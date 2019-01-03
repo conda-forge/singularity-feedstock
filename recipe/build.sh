@@ -3,9 +3,6 @@ set -euf
 
 pushd src/github.com/sylabs/${PKG_NAME}
 
-# bootstrap go dependencies
-go get -u github.com/golang/dep/cmd/dep
-
 # Create a C and CPP compiler for singularity
 cat > singularity-cc <<_EOF
 #!/usr/bin/env bash
