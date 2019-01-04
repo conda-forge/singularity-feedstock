@@ -1,0 +1,168 @@
+diff --git a/mlocal/checks/project.chk b/mlocal/checks/project.chk
+index 99ae2398..ff122690 100644
+--- a/mlocal/checks/project.chk
++++ b/mlocal/checks/project.chk
+@@ -13,27 +13,27 @@ config_add_def PACKAGE_URL \"\"
+ 
+ config_add_def BUILDDIR \"$builddir\"
+ config_add_def PREFIX \"$prefix\"
+-config_add_def EXECPREFIX \"$exec_prefix\"
+-config_add_def BINDIR \"$bindir\"
+-config_add_def SBINDIR \"$sbindir\"
+-config_add_def LIBEXECDIR \"$libexecdir\"
+-config_add_def DATAROOTDIR \"$datarootdir\"
+-config_add_def DATADIR \"$datadir\"
+-config_add_def SYSCONFDIR \"$sysconfdir\"
+-config_add_def SHAREDSTATEDIR \"$sharedstatedir\"
+-config_add_def LOCALSTATEDIR \"$localstatedir\"
+-config_add_def RUNSTATEDIR \"$runstatedir\"
+-config_add_def INCLUDEDIR \"$includedir\"
++config_add_def EXECPREFIX PREFIX
++config_add_def BINDIR EXECPREFIX \"/bin\"
++config_add_def SBINDIR EXECPREFIX \"/sbin\"
++config_add_def LIBEXECDIR EXECPREFIX \"/libexec\"
++config_add_def DATAROOTDIR PREFIX \"/share\"
++config_add_def DATADIR DATAROOTDIR
++config_add_def SYSCONFDIR PREFIX \"/etc\"
++config_add_def SHAREDSTATEDIR PREFIX \"/com\"
++config_add_def LOCALSTATEDIR PREFIX \"/var\"
++config_add_def RUNSTATEDIR LOCALSTATEDIR \"/run\"
++config_add_def INCLUDEDIR PREFIX \"/include\"
+ config_add_def OLDINCLUDEDIR \"$oldincludedir\"
+-config_add_def DOCDIR  \"$docdir\"
+-config_add_def INFODIR \"$infodir\"
+-config_add_def HTMLDIR \"$htmldir\"
+-config_add_def DVIDIR \"$dvidir\"
+-config_add_def PDFDIR \"$pdfdir\"
+-config_add_def PSDIR \"$psdir\"
+-config_add_def LIBDIR \"$libdir\"
+-config_add_def LOCALEDIR \"$localedir\"
+-config_add_def MANDIR \"$mandir\"
++config_add_def DOCDIR  DATADIR \"/doc/singularity\"
++config_add_def INFODIR DATADIR \"/info\"
++config_add_def HTMLDIR DOCDIR
++config_add_def DVIDIR DOCDIR
++config_add_def PDFDIR DOCDIR
++config_add_def PSDIR DOCDIR
++config_add_def LIBDIR PREFIX \"/lib\"
++config_add_def LOCALEDIR DATAROOTDIR \"/locale\"
++config_add_def MANDIR DATAROOTDIR \"/man\"
+ config_add_def SINGULARITY_CONFDIR SYSCONFDIR \"/singularity\"
+ config_add_def CAPABILITY_FILE SINGULARITY_CONFDIR \"/capability.json\"
+ config_add_def ECL_FILE SINGULARITY_CONFDIR \"/ecl.toml\"
+diff --git a/src/cmd/singularity/cli/actions.go b/src/cmd/singularity/cli/actions.go
+index d3f46be5..3d3afb2e 100644
+--- a/src/cmd/singularity/cli/actions.go
++++ b/src/cmd/singularity/cli/actions.go
+@@ -539,7 +539,11 @@ func execStarter(cobraCmd *cobra.Command, image string, args []string, name stri
+ 		sylog.Warningf("can't determine current working directory: %s", err)
+ 	}
+ 
+-	Env := []string{sylog.GetEnvVar(), "SRUNTIME=singularity"}
++	Env := []string{
++		sylog.GetEnvVar(), 
++		"SRUNTIME=singularity",
++		"CONDA_PREFIX="+os.Getenv("CONDA_PREFIX"),
++	}
+ 
+ 	generator.AddProcessEnv("SINGULARITY_APPNAME", AppName)
+ 
+diff --git a/src/cmd/singularity/cli/inspect.go b/src/cmd/singularity/cli/inspect.go
+index 165b2940..6030549b 100644
+--- a/src/cmd/singularity/cli/inspect.go
++++ b/src/cmd/singularity/cli/inspect.go
+@@ -199,7 +199,11 @@ var InspectCmd = &cobra.Command{
+ func getFileContent(abspath, name string, args []string) (string, error) {
+ 	starter := buildcfg.LIBEXECDIR + "/singularity/bin/starter-suid"
+ 	procname := "Singularity inspect"
+-	Env := []string{sylog.GetEnvVar(), "SRUNTIME=singularity"}
++	Env := []string{
++		sylog.GetEnvVar(), 
++		"SRUNTIME=singularity",
++		"CONDA_PREFIX="+os.Getenv("CONDA_PREFIX"),
++	}
+ 
+ 	engineConfig := singularity.NewConfig()
+ 	ociConfig := &oci.Config{}
+diff --git a/src/cmd/singularity/cli/run_help.go b/src/cmd/singularity/cli/run_help.go
+index 771ed68f..7308f1d0 100644
+--- a/src/cmd/singularity/cli/run_help.go
++++ b/src/cmd/singularity/cli/run_help.go
+@@ -46,7 +46,11 @@ var RunHelpCmd = &cobra.Command{
+ 		a := []string{"/bin/cat", "/.singularity.d/runscript.help"}
+ 		starter := buildcfg.LIBEXECDIR + "/singularity/bin/starter-suid"
+ 		procname := "Singularity help"
+-		Env := []string{sylog.GetEnvVar(), "SRUNTIME=singularity"}
++		Env := []string{
++			sylog.GetEnvVar(), 
++			"SRUNTIME=singularity",
++			"CONDA_PREFIX="+os.Getenv("CONDA_PREFIX"),
++		}
+ 
+ 		engineConfig := singularity.NewConfig()
+ 		ociConfig := &oci.Config{}
+diff --git a/src/pkg/build/build.go b/src/pkg/build/build.go
+index 84a21abb..f9967ff4 100644
+--- a/src/pkg/build/build.go
++++ b/src/pkg/build/build.go
+@@ -292,7 +292,11 @@ func (b *Build) runBuildEngine() error {
+ 	}
+ 
+ 	sylog.Debugf("Starting build engine")
+-	env := []string{sylog.GetEnvVar(), "SRUNTIME=" + imgbuild.Name}
++	env := []string{
++		sylog.GetEnvVar(), 
++		"SRUNTIME=" + imgbuild.Name,
++		"CONDA_PREFIX=" + os.Getenv("CONDA_PREFIX"),
++	}
+ 	starter := filepath.Join(buildcfg.LIBEXECDIR, "/singularity/bin/starter")
+ 	progname := []string{"singularity image-build"}
+ 	ociConfig := &oci.Config{}
+diff --git a/src/pkg/buildcfg/confgen/gen.go b/src/pkg/buildcfg/confgen/gen.go
+index 23119004..dd0ecb88 100644
+--- a/src/pkg/buildcfg/confgen/gen.go
++++ b/src/pkg/buildcfg/confgen/gen.go
+@@ -30,8 +30,13 @@ type Define struct {
+ 
+ // WriteLine writes a line of configuration.
+ func (d Define) WriteLine() (s string) {
+-	s = "const " + d.Words[1] + " = " + d.Words[2]
++	s = "var " + d.Words[1] + " = "
+ 
++        if d.Words[1] == "PREFIX" {
++		s += "os.Getenv(\"CONDA_PREFIX\")"
++	} else {
++		s += d.Words[2]
++	}
+ 	if len(d.Words) > 3 {
+ 	}
+ 
+@@ -43,6 +48,7 @@ func (d Define) WriteLine() (s string) {
+ 
+ var confgenTemplate = template.Must(template.New("").Parse(`// Code generated by go generate; DO NOT EDIT.
+ package buildcfg
++import "os"
+ {{ range $i, $d := . }}
+ {{$d.WriteLine -}}
+ {{end}}
+diff --git a/src/runtime/starter/smaster.go b/src/runtime/starter/smaster.go
+index c1481111..7018755c 100644
+--- a/src/runtime/starter/smaster.go
++++ b/src/runtime/starter/smaster.go
+@@ -145,8 +145,16 @@ func SMaster(rpcSocket, masterSocket int, starterConfig *starter.Config, jsonByt
+ }
+ 
+ func startup() {
++	conda_prefix := os.Getenv("CONDA_PREFIX")
+ 	loglevel := os.Getenv("SINGULARITY_MESSAGELEVEL")
+ 	os.Clearenv()
++	if conda_prefix == "" {
++		sylog.Errorf("CONDA_PREFIX is not set")
++	}
++	if os.Setenv("CONDA_PREFIX", conda_prefix) != nil {
++		sylog.Errorf("can't restore CONDA_PREFIX environment variable")
++		os.Exit(1)
++	}
+ 	if loglevel != "" {
+ 		if os.Setenv("SINGULARITY_MESSAGELEVEL", loglevel) != nil {
+ 			sylog.Warningf("can't restore SINGULARITY_MESSAGELEVEL environment variable")

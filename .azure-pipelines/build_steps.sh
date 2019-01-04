@@ -19,7 +19,7 @@ conda-build:
 
 CONDARC
 
-conda install --yes --quiet conda-forge-ci-setup=2 conda-build=3.16 -c conda-forge
+conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 
 # set up the condarc
 setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
@@ -27,16 +27,12 @@ setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 # A lock sometimes occurs with incomplete builds. The lock file is stored in build_artifacts.
 conda clean --lock
 
-source run_conda_forge_build_setup
-
-# make the build number clobber
+run_conda_forge_build_setup# make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 conda build "${RECIPE_ROOT}" -m "${CI_SUPPORT}/${CONFIG}.yaml" \
     --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
 
-
-upload_package "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 
 touch "/home/conda/feedstock_root/build_artifacts/conda-forge-build-done-${CONFIG}"
