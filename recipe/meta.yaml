@@ -14,7 +14,7 @@ source:
       - 0003-fix-relocation.diff
 
 build:
-  number: 1000
+  number: 1001
   skip: true  # [not linux]
 
 requirements:
