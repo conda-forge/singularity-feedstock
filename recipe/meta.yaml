@@ -1,4 +1,5 @@
 {% set version = "3.1.1" %}
+{% set hash = "7f0df46458d8894ba0c2071b0848895304ae6b1137d3d4630f1600ed8eddf1a4" %}
 
 package:
   name: singularity
@@ -7,10 +8,12 @@ package:
 source:
   - folder: src/github.com/sylabs/singularity
     url: https://github.com/sylabs/singularity/releases/download/v{{ version  }}/singularity-{{ version  }}.tar.gz
-    patches:
-      - 0001-append-to-environment-flags.diff
-      - 0002-use-external-cni.diff
-      - 0003-fix-relocation.diff
+    sha265: {{hash}}
+    # The following may not be needed anymore
+    #patches:
+    #  - 0001-append-to-environment-flags.diff
+    #  - 0002-use-external-cni.diff
+    #  - 0003-fix-relocation.diff
 
 build:
   number: 0

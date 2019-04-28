@@ -1,71 +1,35 @@
 diff --git a/mconfig b/mconfig
-index 34930d6b..a75172f6 100755
+index 2a72625d9..a6d4bab19 100755
 --- a/mconfig
 +++ b/mconfig
-@@ -600,7 +600,6 @@ if [ "$found_modules" = "" ]; then
- 	fi
- fi
- echo " found build modules:"
--echo "CPPFLAGS :=" >> $makeit_makefile_base
- # NOTE: parsed module (*.mconf) files only substitute var tgt_arch for now
- for m in $found_modules; do
- 	mod=`eval echo ${m##*./}`
-@@ -624,9 +623,7 @@ echo >> $makeit_makefile_base
- 
+@@ -660,7 +660,6 @@ fi
+
+ if [ "$found_modules" != "" ]; then
+        echo " found build modules:"
+-       echo "CPPFLAGS :=" >> $makeit_makefile_base
+        # NOTE: parsed module (*.mconf) files only substitute var tgt_arch for now
+        for m in $found_modules; do
+                mod=`eval echo ${m##*./}`
+@@ -684,9 +683,7 @@ fi
+
  # init LDFLAGS if static builds are supported
  if [ "$hststatic" = "1" -a "$tgtstatic" = "1" ]; then
--	echo "LDFLAGS := -static" >> $makeit_makefile_base
+-       echo "LDFLAGS := -static $ldflags" >> $makeit_makefile_base
 -else
--	echo "LDFLAGS :=" >> $makeit_makefile_base
-+	echo "LDFLAGS += -static" >> $makeit_makefile_base
+-       echo "LDFLAGS := $ldflags" >> $makeit_makefile_base
++       echo "LDFLAGS += -static $ldflags" >> $makeit_makefile_base
  fi
  echo >> $makeit_makefile_base
- 
+
 diff --git a/mlocal/frags/common_opts.mk b/mlocal/frags/common_opts.mk
-index a44a3e0b..ba8fd199 100644
+index 64160bf10..352ae07c5 100644
 --- a/mlocal/frags/common_opts.mk
 +++ b/mlocal/frags/common_opts.mk
-@@ -2,9 +2,9 @@
+@@ -2,6 +2,6 @@
  CLEANFILES :=
- 
+
  # general build-wide compile options
 -AFLAGS := -g
 +AFLAGS += -g
- 
--CFLAGS := -Wall -Werror -Wfatal-errors  -Wno-unknown-warning-option
-+CFLAGS += -Wall -Werror -Wfatal-errors  -Wno-unknown-warning-option
- CFLAGS += -Wstrict-prototypes -Wpointer-arith -Wbad-function-cast
- CFLAGS += -Woverlength-strings -Wframe-larger-than=2047
- CFLAGS += -Wno-sign-compare -Wclobbered -Wempty-body -Wmissing-parameter-type
-diff --git a/mlocal/frags/go_appsec_opts.mk b/mlocal/frags/go_appsec_opts.mk
-index 414f3b9a..3817cc54 100644
---- a/mlocal/frags/go_appsec_opts.mk
-+++ b/mlocal/frags/go_appsec_opts.mk
-@@ -3,9 +3,9 @@ GO_TAGS := -tags "containers_image_openpgp apparmor selinux seccomp"
- GO_LDFLAGS :=
- GO_BUILDMODE := -buildmode=default
- 
--CGO_CPPFLAGS := -I$(BUILDDIR) -I$(SOURCEDIR)/src/runtime -I$(SOURCEDIR)/src/runtime/c/lib
-+CGO_CPPFLAGS += -I$(BUILDDIR) -I$(SOURCEDIR)/src/runtime -I$(SOURCEDIR)/src/runtime/c/lib
- CGO_CPPFLAGS += -include $(BUILDDIR_ABSPATH)/config.h
- 
--CGO_LDFLAGS := -L$(BUILDDIR_ABSPATH)/lib -L$(BUILDDIR) -lruntime
-+CGO_LDFLAGS += -L$(BUILDDIR_ABSPATH)/lib -L$(BUILDDIR) -lruntime
- 
- export CGO_CPPFLAGS CGO_LDFLAGS
-diff --git a/mlocal/frags/go_common_opts.mk b/mlocal/frags/go_common_opts.mk
-index 04f20910..e31c6a5a 100644
---- a/mlocal/frags/go_common_opts.mk
-+++ b/mlocal/frags/go_common_opts.mk
-@@ -3,9 +3,9 @@ GO_TAGS := -tags "containers_image_openpgp apparmor selinux"
- GO_LDFLAGS :=
- GO_BUILDMODE := -buildmode=default
- 
--CGO_CPPFLAGS := -I$(BUILDDIR) -I$(SOURCEDIR)/src/runtime -I$(SOURCEDIR)/src/runtime/c/lib
-+CGO_CPPFLAGS += -I$(BUILDDIR) -I$(SOURCEDIR)/src/runtime -I$(SOURCEDIR)/src/runtime/c/lib
- CGO_CPPFLAGS += -include $(BUILDDIR_ABSPATH)/config.h
- 
--CGO_LDFLAGS := -L$(BUILDDIR_ABSPATH)/lib -L$(BUILDDIR) -lruntime
-+CGO_LDFLAGS += -L$(BUILDDIR_ABSPATH)/lib -L$(BUILDDIR) -lruntime
- 
- export CGO_CPPFLAGS CGO_LDFLAGS
+
+ LDFLAGS += -Wl,-z,relro,-z,now
