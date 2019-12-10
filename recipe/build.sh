@@ -18,6 +18,9 @@ chmod 755 singularity-cxx
 
 # configure
 ./mconfig \
+  -P release-stripped \
+  --without-suid \
+  --without-network \
   -p $PREFIX \
   -c "${PWD}/singularity-cc" \
   -x "${PWD}/singularity-cxx"
