@@ -1,7 +1,9 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
 c_compiler:
-- gcc
+- clang
 c_compiler_version:
-- '7'
+- '9'
 cgo_compiler:
 - go-cgo
 channel_sources:
@@ -9,19 +11,17 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
+- clangxx
 cxx_compiler_version:
-- '7'
-docker_image:
-- condaforge/linux-anvil-comp7
+- '9'
 libarchive:
 - '3.3'
-libuuid:
-- 2.32.1
+macos_machine:
+- x86_64-apple-darwin13.4.0
+macos_min_version:
+- '10.9'
 openssl:
 - 1.1.1a
 pin_run_as_build:
-  libuuid:
-    max_pin: x
   openssl:
     max_pin: x.x.x
