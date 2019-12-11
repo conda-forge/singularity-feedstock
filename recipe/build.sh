@@ -8,7 +8,9 @@ pushd src/github.com/sylabs/${PKG_NAME}
   -P release-stripped \
   --without-suid \
   --without-network \
-  -p $PREFIX
+  -p "${PREFIX}" \
+  -c "${CC}" \
+  -x "${CXX}"
 
 # build
 pushd builddir
