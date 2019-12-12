@@ -30,6 +30,8 @@ requirements:
     # CNI version from singularity/Gopkg.lock
     - cni-plugins >=0.7.4  # [linux]
     - squashfs-tools  # [linux]
+  run_constrained:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
 test:
   commands:
