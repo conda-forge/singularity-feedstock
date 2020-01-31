@@ -1,4 +1,4 @@
-{% set version = "3.0.1" %}
+{% set version = "3.5.2" %}
 
 package:
   name: singularity
@@ -14,7 +14,7 @@ source:
       - 0003-fix-relocation.diff
 
 build:
-  number: 1000
+  number: 0
   skip: true  # [not linux]
 
 requirements:
