@@ -8,10 +8,10 @@ source:
   - folder: src/github.com/sylabs/singularity
     git_url: https://github.com/sylabs/singularity.git
     git_rev: v{{ version }}
-    patches:
-      - 0001-append-to-environment-flags.diff
-      - 0002-use-external-cni.diff
-      - 0003-fix-relocation.diff
+    #patches:
+    #  - 0001-append-to-environment-flags.diff
+    #  - 0002-use-external-cni.diff
+    #  - 0003-fix-relocation.diff
 
 build:
   number: 0
