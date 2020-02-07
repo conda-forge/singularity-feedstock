@@ -3,11 +3,14 @@ set -euf
 
 pushd src/github.com/sylabs/${PKG_NAME}
 
+# The "starter" binary inherits the stack from "singularity" meaning FORTIFY_SOURCE cannot be used
+CGO_CPPFLAGS=$(echo "${CGO_CPPFLAGS}" | sed -E 's@FORTIFY_SOURCE=[0-9]@FORTIFY_SOURCE=0@g')
+export CGO_CPPFLAGS
+
 # configure
 ./mconfig \
   -P release-stripped \
   --without-suid \
-  --without-network \
   -p "${PREFIX}" \
   -c "${CC}" \
   -x "${CXX}"
