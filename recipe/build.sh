@@ -3,24 +3,17 @@ set -euf
 
 pushd src/github.com/sylabs/${PKG_NAME}
 
-# Create a C and CPP compiler for singularity
-cat > singularity-cc <<_EOF
-#!/usr/bin/env bash
-exec $CC -I${PREFIX}/include -L${PREFIX}/lib \$@
-_EOF
-chmod 755 singularity-cc
-
-cat > singularity-cxx <<_EOF
-#!/usr/bin/env bash
-exec ${CXX:-/bin/false}- -I${PREFIX}/include -L${PREFIX}/lib \$@
-_EOF
-chmod 755 singularity-cxx
+# The "starter" binary inherits the stack from "singularity" meaning FORTIFY_SOURCE cannot be used
+CGO_CPPFLAGS=$(echo "${CGO_CPPFLAGS}" | sed -E 's@FORTIFY_SOURCE=[0-9]@FORTIFY_SOURCE=0@g')
+export CGO_CPPFLAGS
 
 # configure
 ./mconfig \
-  -p $PREFIX \
-  -c "${PWD}/singularity-cc" \
-  -x "${PWD}/singularity-cxx"
+  -P release-stripped \
+  --without-suid \
+  -p "${PREFIX}" \
+  -c "${CC}" \
+  -x "${CXX}"
 
 # build
 pushd builddir
@@ -29,9 +22,6 @@ make
 
 # install
 make install
-
-# Add post-install script with message on how to grant the -suid piece
-cp $RECIPE_DIR/post-link.sh $PREFIX/bin/.$PKG_NAME-post-link.sh
 
 # Make Empty session dir
 mkdir -p $PREFIX/var/singularity/mnt/session

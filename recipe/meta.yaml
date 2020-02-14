@@ -1,4 +1,4 @@
-{% set version = "3.0.1" %}
+{% set version = "3.5.2" %}
 
 package:
   name: singularity
@@ -6,33 +6,39 @@ package:
 
 source:
   - folder: src/github.com/sylabs/singularity
-    git_url: https://github.com/sylabs/singularity.git
-    git_rev: v{{ version }}
+    url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
+    sha256: f9c21e289377a4c40ed7a78a0c95e1ff416dec202ed49a6c616dd2c37700eab8
     patches:
-      - 0001-append-to-environment-flags.diff
-      - 0002-use-external-cni.diff
-      - 0003-fix-relocation.diff
+      - patches/0001-Make-runtime-relocatable.patch
+      - patches/0002-Fix-configuration-for-conda-forge.patch
+      - patches/0003-Use-external-CNI.patch
 
 build:
-  number: 1000
+  number: 0
   skip: true  # [not linux]
+  # The binary is made runtime relocatable using the included patch
+  detect_binary_files_with_prefix: False
 
 requirements:
   build:
-    - {{ compiler('cgo') }}
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('cgo') }}
     - make
     - pkg-config
     - go-dep
+    - sed
   host:
-    - libuuid
+    - libuuid  # [linux]
     - libarchive
-    - libseccomp
+    - libseccomp  # [linux]
     - openssl
   run:
     # CNI version from singularity/Gopkg.lock
-    - cni-plugins >=0.7.4
-    - squashfs-tools
+    - cni-plugins >=0.7.4  # [linux]
+    - squashfs-tools  # [linux]
+  run_constrained:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
 test:
   commands:
@@ -48,16 +54,12 @@ test:
     # UserNS test
     - singularity build --sandbox lolcow docker://godlovedc/lolcow
 
-    # This works fine if you have root or properly configured suid
-    # binaries
-    - |
-      if [[ -e /proc/self/ns/user ]]; then
-        singularity --verbose --debug run -u lolcow || true
-      fi
+    # Either run the container or fail due to user namespaces being disabled
+    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: Operation not permitted')"
 
 about:
   home: https://www.sylabs.io/singularity/
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
   license_file: src/github.com/sylabs/singularity/LICENSE-LBNL.md
   summary: "Singularity: Application containers for Linux"
@@ -83,3 +85,4 @@ extra:
     - bgruening
     - jakirkham
     - sodre
+    - chrisburr
