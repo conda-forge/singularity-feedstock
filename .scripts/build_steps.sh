@@ -19,6 +19,7 @@ conda-build:
 
 CONDARC
 
+# Force older conda-build to avoid https://github.com/conda/conda-build/issues/2674
 conda install --yes --quiet conda-forge-ci-setup=2 "conda-build<3.17" -c conda-forge
 
 # set up the condarc

@@ -165,5 +165,7 @@ Feedstock Maintainers
 =====================
 
 * [@bgruening](https://github.com/bgruening/)
+* [@chrisburr](https://github.com/chrisburr/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@sodre](https://github.com/sodre/)
+
