@@ -1,4 +1,4 @@
-{% set version = "3.5.3" %}
+{% set version = "3.6.1" %}
 
 package:
   name: singularity
@@ -7,7 +7,7 @@ package:
 source:
   - folder: src/github.com/sylabs/singularity
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: 0c76f1e3808bf4c10e92b17150314b2b816be79f8101be448a6e9d7a96c9e486
+    sha256: 6cac56106ee7f209150aaee9f8788d03b58796af1b767245d343f0b8a691121c
     patches:
       - patches/0001-Make-runtime-relocatable.patch
       - patches/0002-Fix-configuration-for-conda-forge.patch
@@ -17,7 +17,7 @@ build:
   number: 0
   skip: true  # [not linux]
   # The binary is made runtime relocatable using the included patch
-  detect_binary_files_with_prefix: False
+  detect_binary_files_with_prefix: false
 
 requirements:
   build:
@@ -62,7 +62,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: src/github.com/sylabs/singularity/LICENSE-LBNL.md
-  summary: "Singularity: Application containers for Linux"
+  summary: 'Singularity: Application containers for Linux'
 
   description: |
     Singularity is a container platform focused on supporting "Mobility of
