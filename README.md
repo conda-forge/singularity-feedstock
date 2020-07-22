@@ -5,7 +5,7 @@ Home: https://www.sylabs.io/singularity/
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Singularity: Application containers for Linux
 
