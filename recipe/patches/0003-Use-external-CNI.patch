@@ -1,4 +1,4 @@
-From 57b824e951979c5f6c52a9ff5fd3aca3e8cbbe38 Mon Sep 17 00:00:00 2001
+From 95cc82a54278a73593096c8d125fd5dad50a2b66 Mon Sep 17 00:00:00 2001
 From: Chris Burr <christopher.burr@cern.ch>
 Date: Fri, 7 Feb 2020 14:14:36 +0100
 Subject: [PATCH 3/3] Use external CNI
@@ -9,11 +9,11 @@ Subject: [PATCH 3/3] Use external CNI
  2 files changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/internal/pkg/runtime/engine/singularity/container_linux.go b/internal/pkg/runtime/engine/singularity/container_linux.go
-index 484759ef5..b92404e1a 100644
+index c03d052d3..4d69c5ddc 100644
 --- a/internal/pkg/runtime/engine/singularity/container_linux.go
 +++ b/internal/pkg/runtime/engine/singularity/container_linux.go
-@@ -41,10 +41,10 @@ import (
- )
+@@ -55,10 +55,10 @@ var imageDriver image.Driver
+ var umountPoints []string
  
  // defaultCNIConfPath is the default directory to CNI network configuration files.
 -var defaultCNIConfPath = filepath.Join(buildcfg.SYSCONFDIR, "singularity", "network")
@@ -26,7 +26,7 @@ index 484759ef5..b92404e1a 100644
  type lastMount struct {
  	dest  string
 diff --git a/mlocal/frags/build_network.mk b/mlocal/frags/build_network.mk
-index eff1ba6cf..a74b80c39 100644
+index f774643d4..aa508ce17 100644
 --- a/mlocal/frags/build_network.mk
 +++ b/mlocal/frags/build_network.mk
 @@ -13,7 +13,7 @@ cni_config_LIST := $(SOURCEDIR)/etc/network/00_bridge.conflist \
@@ -46,5 +46,5 @@ index eff1ba6cf..a74b80c39 100644
 -ALL += cniplugins
 +INSTALLFILES += $(cni_config_INSTALL)
 -- 
-2.24.0
+2.27.0
 

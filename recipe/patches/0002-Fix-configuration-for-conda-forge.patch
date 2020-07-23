@@ -1,4 +1,4 @@
-From 1d11da78065c4b5dc35979579dd61267bb16c5c7 Mon Sep 17 00:00:00 2001
+From 7078100416d6f3d55f5c4c1e6935c4f64af2a580 Mon Sep 17 00:00:00 2001
 From: Chris Burr <christopher.burr@cern.ch>
 Date: Fri, 7 Feb 2020 14:11:11 +0100
 Subject: [PATCH 2/3] Fix configuration for conda-forge
@@ -8,7 +8,7 @@ Subject: [PATCH 2/3] Fix configuration for conda-forge
  1 file changed, 19 insertions(+), 19 deletions(-)
 
 diff --git a/mlocal/checks/project-post.chk b/mlocal/checks/project-post.chk
-index 3116dd530..b91f5463c 100644
+index b164e152d..5ab22f02f 100644
 --- a/mlocal/checks/project-post.chk
 +++ b/mlocal/checks/project-post.chk
 @@ -17,26 +17,26 @@ config_add_def BUILDDIR \"$builddir\"
@@ -58,5 +58,5 @@ index 3116dd530..b91f5463c 100644
  config_add_def SINGULARITY_CONF_FILE SINGULARITY_CONFDIR \"/singularity.conf\"
  config_add_def CAPABILITY_FILE SINGULARITY_CONFDIR \"/capability.json\"
 -- 
-2.24.0
+2.27.0
 
