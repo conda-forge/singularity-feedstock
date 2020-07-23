@@ -55,7 +55,7 @@ test:
     - singularity build --sandbox lolcow docker://godlovedc/lolcow
 
     # Either run the container or fail due to user namespaces being disabled
-    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: Operation not permitted')"
+    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: user namespace requires to set')"
 
 about:
   home: https://www.sylabs.io/singularity/
