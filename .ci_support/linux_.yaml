@@ -19,7 +19,7 @@ libarchive:
 libuuid:
 - 2.32.1
 openssl:
-- 1.1.1a
+- 1.1.1
 pin_run_as_build:
   libuuid:
     max_pin: x
