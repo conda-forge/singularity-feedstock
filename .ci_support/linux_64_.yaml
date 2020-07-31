@@ -25,3 +25,5 @@ pin_run_as_build:
     max_pin: x
   openssl:
     max_pin: x.x.x
+target_platform:
+- linux-64

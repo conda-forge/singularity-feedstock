@@ -12,9 +12,10 @@ source:
       - patches/0001-Make-runtime-relocatable.patch
       - patches/0002-Fix-configuration-for-conda-forge.patch
       - patches/0003-Use-external-CNI.patch
+      - patches/set-version-from-env.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
   # The binary is made runtime relocatable using the included patch
   detect_binary_files_with_prefix: false
@@ -43,6 +44,10 @@ requirements:
 test:
   commands:
     - singularity --help
+    - singularity --version
+
+    # Ensure the version is set correctly
+    - singularity --version | grep {{ version }}
 
     # Ensure we are using conda's CNI
     - test ! -d $PREFIX/libexec/singularity/cni
