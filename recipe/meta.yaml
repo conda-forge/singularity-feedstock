@@ -1,4 +1,4 @@
-{% set version = "3.6.1" %}
+{% set version = "3.6.2" %}
 
 package:
   name: singularity
@@ -7,7 +7,7 @@ package:
 source:
   - folder: src/github.com/sylabs/singularity
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: 6cac56106ee7f209150aaee9f8788d03b58796af1b767245d343f0b8a691121c
+    sha256: dfd7ec7376ca0321c47787388fb3e781034edf99068f66efc36109e516024d9b
     patches:
       - patches/0001-Make-runtime-relocatable.patch
       - patches/0002-Fix-configuration-for-conda-forge.patch
@@ -15,7 +15,7 @@ source:
       - patches/set-version-from-env.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not linux]
   # The binary is made runtime relocatable using the included patch
   detect_binary_files_with_prefix: false
