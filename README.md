@@ -5,9 +5,13 @@ Home: https://www.sylabs.io/singularity/
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/singularity-feedstock/blob/master/LICENSE.txt)
 
 Summary: Singularity: Application containers for Linux
+
+Development: https://github.com/singularityware/singularity
+
+Documentation: https://www.sylabs.io/docs/
 
 Singularity is a container platform focused on supporting "Mobility of
 Compute"
