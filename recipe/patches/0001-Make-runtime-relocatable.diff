@@ -27,7 +27,7 @@ index f4786f9a56..5a8de17bc5 100644
      - Christian Neyers <foss@neyers.org>
      - Daniele Tamino <daniele.tamino@gmail.com>
 diff --git a/internal/pkg/buildcfg/confgen/gen.go b/internal/pkg/buildcfg/confgen/gen.go
-index d492e4bf32..7df559ba8f 100644
+index d492e4bf32..a668e15f9d 100644
 --- a/internal/pkg/buildcfg/confgen/gen.go
 +++ b/internal/pkg/buildcfg/confgen/gen.go
 @@ -11,6 +11,7 @@ import (
@@ -96,8 +96,8 @@ index d492e4bf32..7df559ba8f 100644
 +
 +func RelocatePath(original string) (string) {
 +	// For security, never allow relocation when built with SetUID support
-+	if SINGULARITY_SUID_INSTALL == 1 {
-+		return original
++	if SINGULARITY_SUID_INSTALL != 0 {
++		panic("This code should not exist when SINGULARITY_SUID_INSTALL is set")
 +	}
 +
 +	if ! strings.HasPrefix(original, "{{.Prefix}}") {
