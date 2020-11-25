@@ -9,7 +9,7 @@ source:
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
     sha256: fb96aaf5f462a56a4a5bd2951287bcbbefe8cf543e228e4e955428f386a8d478
     patches:
-      - patches/0001-Make-runtime-relocatable.patch
+      - patches/0001-Make-runtime-relocatable.diff
       - patches/0002-Fix-configuration-for-conda-forge.patch
       - patches/0003-Use-external-CNI.patch
       - patches/set-version-from-env.patch
