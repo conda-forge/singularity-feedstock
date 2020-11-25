@@ -61,6 +61,8 @@ test:
 
     # Either run the container or fail due to user namespaces being disabled
     - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: user namespace requires to set')"
+    - singularity pull library://alpine
+    - singularity run -u alpine_latest.sif echo "Hello world"
 
 about:
   home: https://www.sylabs.io/singularity/
