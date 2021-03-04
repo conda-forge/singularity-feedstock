@@ -27,7 +27,7 @@ index 40add42bc..45f9bca4a 100644
      - Christian Neyers <foss@neyers.org>
      - Daniele Tamino <daniele.tamino@gmail.com>
 diff --git a/internal/pkg/buildcfg/confgen/gen.go b/internal/pkg/buildcfg/confgen/gen.go
-index d492e4bf3..5be5de766 100644
+index d492e4bf3..04ab71faa 100644
 --- a/internal/pkg/buildcfg/confgen/gen.go
 +++ b/internal/pkg/buildcfg/confgen/gen.go
 @@ -11,6 +11,7 @@ import (
@@ -38,7 +38,7 @@ index d492e4bf3..5be5de766 100644
  	"strings"
  	"text/template"
  )
-@@ -29,22 +30,90 @@ type Define struct {
+@@ -29,22 +30,89 @@ type Define struct {
  }
  
  // WriteLine writes a line of configuration.
@@ -106,8 +106,7 @@ index d492e4bf3..5be5de766 100644
 +
 +	executablePath, err := os.Executable()
 +	if err != nil {
-+		panic(err)
-+		// return original
++		return original
 +	}
 +	prefix := filepath.Dir(executablePath)
 +
@@ -137,7 +136,7 @@ index d492e4bf3..5be5de766 100644
  {{end}}
  `))
  
-@@ -56,6 +125,24 @@ func main() {
+@@ -56,6 +124,24 @@ func main() {
  	}
  	defer outFile.Close()
  
@@ -162,7 +161,7 @@ index d492e4bf3..5be5de766 100644
  	inFile, err := ioutil.ReadFile(os.Args[1])
  	if err != nil {
  		fmt.Println(err)
-@@ -64,12 +151,22 @@ func main() {
+@@ -64,12 +150,22 @@ func main() {
  
  	header := []Define{}
  	s := bufio.NewScanner(bytes.NewReader(inFile))
@@ -185,7 +184,7 @@ index d492e4bf3..5be5de766 100644
  
  	if goBuildTags := os.Getenv("GO_BUILD_TAGS"); goBuildTags != "" {
  		d := Define{
-@@ -82,5 +179,18 @@ func main() {
+@@ -82,5 +178,18 @@ func main() {
  		header = append(header, d)
  	}
  
