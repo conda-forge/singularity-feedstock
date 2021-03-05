@@ -1,4 +1,4 @@
-{% set version = "3.6.4" %}
+{% set version = "3.7.1" %}
 
 package:
   name: singularity
@@ -7,11 +7,12 @@ package:
 source:
   - folder: src/github.com/sylabs/singularity
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: 71233a81d6bb4d686d8dc636b3e3e962a372f54001921c89a12b062cefd9e79f
+    sha256: 82d2c65063560195ec34551931be3c325b95e8e2009e92755fd7daad346e083c
     patches:
       - patches/0001-Make-runtime-relocatable.patch
       - patches/0002-Fix-configuration-for-conda-forge.patch
       - patches/0003-Use-external-CNI.patch
+      - patches/0004-Find-unsquashfs-from-PATH.diff
       - patches/set-version-from-env.patch
 
 build:
@@ -59,13 +60,17 @@ test:
     # UserNS test
     - singularity build --sandbox lolcow docker://godlovedc/lolcow
 
+    # The remaining tests are disabled on ppc64le due to issues launching docker with --privileged
     # Either run the container or fail due to user namespaces being disabled
-    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: user namespace requires to set')"
+    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: user namespace requires to set')"  # [not ppc64le]
+
+    # https://github.com/hpcng/singularity/issues/5668
+    - singularity pull library://alpine  # [not ppc64le]
+    - singularity --verbose --debug run -u alpine_latest.sif echo "Hello world"  # [not ppc64le]
 
 about:
   home: https://www.sylabs.io/singularity/
   license: BSD-3-Clause
-  license_family: BSD
   license_file: src/github.com/sylabs/singularity/LICENSE-LBNL.md
   summary: 'Singularity: Application containers for Linux'
 
