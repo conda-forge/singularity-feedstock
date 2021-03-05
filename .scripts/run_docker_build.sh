@@ -69,6 +69,9 @@ DOCKER_RUN_ARGS="${CONDA_FORGE_DOCKER_RUN_ARGS}"
 if [ -z "${CI}" ]; then
     DOCKER_RUN_ARGS="-it ${DOCKER_RUN_ARGS}"
 fi
+if [ "${PLATFORM}" != "linux-ppc64le" ]; then
+    DOCKER_RUN_ARGS="--privileged ${DOCKER_RUN_ARGS}"
+fi
 endgroup "Configure Docker"
 
 startgroup "Start Docker"
@@ -76,7 +79,6 @@ export UPLOAD_PACKAGES="${UPLOAD_PACKAGES:-True}"
 docker run ${DOCKER_RUN_ARGS} \
            -v "${RECIPE_ROOT}":/home/conda/recipe_root:rw,z,delegated \
            -v "${FEEDSTOCK_ROOT}":/home/conda/feedstock_root:rw,z,delegated \
-           --privileged \
            -e CONFIG \
            -e HOST_USER_ID \
            -e UPLOAD_PACKAGES \
