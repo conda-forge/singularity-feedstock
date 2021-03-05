@@ -71,7 +71,6 @@ test:
 about:
   home: https://www.sylabs.io/singularity/
   license: BSD-3-Clause
-  license_family: BSD
   license_file: src/github.com/sylabs/singularity/LICENSE-LBNL.md
   summary: 'Singularity: Application containers for Linux'
 
