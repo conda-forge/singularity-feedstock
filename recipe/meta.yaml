@@ -61,11 +61,11 @@ test:
     - singularity build --sandbox lolcow docker://godlovedc/lolcow
 
     # Either run the container or fail due to user namespaces being disabled
-    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: user namespace requires to set')"
+    - "singularity --verbose --debug run -u lolcow || (singularity --verbose --debug run -u lolcow 2>&1 | grep 'Failed to create user namespace: user namespace requires to set')"  # [not ppc64le]
 
     # https://github.com/hpcng/singularity/issues/5668
-    - singularity pull library://alpine
-    - singularity --verbose --debug run -u alpine_latest.sif echo "Hello world"
+    - singularity pull library://alpine  # [not ppc64le]
+    - singularity --verbose --debug run -u alpine_latest.sif echo "Hello world"  # [not ppc64le]
 
 about:
   home: https://www.sylabs.io/singularity/
