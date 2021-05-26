@@ -1,4 +1,4 @@
-{% set version = "3.7.1" %}
+{% set version = "3.7.4" %}
 
 package:
   name: singularity
@@ -7,7 +7,7 @@ package:
 source:
   - folder: src/github.com/sylabs/singularity
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: 82d2c65063560195ec34551931be3c325b95e8e2009e92755fd7daad346e083c
+    sha256: c266369a8bf2747f44e0759858c3fc3b2325b975a8818b2668f0b97b124d0164
     patches:
       - patches/0001-Make-runtime-relocatable.patch
       - patches/0002-Fix-configuration-for-conda-forge.patch
