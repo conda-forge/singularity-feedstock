@@ -9,7 +9,6 @@ source:
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-ce-{{ version }}.tar.gz
     sha256: b5fe7b40b5298f0085d9eb29e5e3e6b41e92293f2aaa5965a38710bf14a76925
     patches:
-      - patches/0002-Fix-configuration-for-conda-forge.patch
       - patches/0003-Use-external-CNI.patch
       - patches/0004-Find-unsquashfs-from-PATH.diff
       - patches/set-version-from-env.patch
