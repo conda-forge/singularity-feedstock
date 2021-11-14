@@ -25,7 +25,7 @@ openssl:
 pin_run_as_build:
   libuuid:
     max_pin: x
-openssl:
+  openssl:
     max_pin: x.x.x
 target_platform:
 - linux-64
