@@ -7,7 +7,7 @@ package:
 source:
   - folder: src/github.com/sylabs/singularity
     url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: 56e797eb29a2fafaf6ccd730fb8cc9e35713020dacb4d19be02a7204272894360b0d254bd8066d9f14181b935f7179effbac2dfa776b2ff3e0e201388c372836
+    sha256: 6667eb8875d2b66d73504f40c956b42b1351744f488d164204376215d885da5c
     patches:
       - patches/0001-Make-runtime-relocatable.patch
       - patches/0002-Fix-configuration-for-conda-forge.patch
