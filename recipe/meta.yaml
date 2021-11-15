@@ -59,7 +59,8 @@ test:
 
     # UserNS test
     # ngam: disabling this for ppc64le for now (fails with mount error)
-    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [linux64]
+    # ngam: enable again
+    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [not aarch64]
 
     # The remaining tests are disabled on ppc64le due to issues launching docker with --privileged
     # Either run the container or fail due to user namespaces being disabled
