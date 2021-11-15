@@ -56,7 +56,8 @@ test:
     - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
 
     # UserNS test
-    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [not aarch64]
+    # ngam: disabling this for ppc64le for now (fails with mount error)
+    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [linux64]
 
     # The remaining tests are disabled on ppc64le due to issues launching docker with --privileged
     # Either run the container or fail due to user namespaces being disabled
