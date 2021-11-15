@@ -26,7 +26,7 @@ conda-build:
 
 CONDARC
 BUILD_CMD=build
-conda install mamba python==3.6 -c conda-forge
+conda install mamba python -c conda-forge
 mamba install --yes --quiet "conda-forge-ci-setup=3" conda-build pip python ${GET_BOA:-} -c conda-forge
 
 # set up the condarc
