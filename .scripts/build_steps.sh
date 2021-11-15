@@ -25,10 +25,9 @@ conda-build:
  root-dir: ${FEEDSTOCK_ROOT}/build_artifacts
 
 CONDARC
-# ngam: update for latest cos7
-# GET_BOA=boa
-# BUILD_CMD=mambabuild
-BUILD_CMD=build
+GET_BOA=boa
+BUILD_CMD=mambabuild
+
 conda install --yes --quiet "conda-forge-ci-setup=3" conda-build pip ${GET_BOA:-} -c conda-forge
 
 # set up the condarc
@@ -43,7 +42,7 @@ make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 ( endgroup "Configuring conda" ) 2> /dev/null
 
-if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 10 ]]; then
+if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     if [[ "x${BUILD_OUTPUT_ID:-}" != "x" ]]; then
         EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --output-id ${BUILD_OUTPUT_ID}"
     fi
