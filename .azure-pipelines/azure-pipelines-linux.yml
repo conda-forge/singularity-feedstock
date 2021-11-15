@@ -5,7 +5,7 @@
 jobs:
 - job: linux
   pool:
-    vmImage: ubuntu-18.04
+    vmImage: ubuntu-latest
   strategy:
     matrix:
       linux_64_:
