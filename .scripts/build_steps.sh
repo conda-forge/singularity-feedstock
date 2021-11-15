@@ -25,8 +25,8 @@ conda-build:
  root-dir: ${FEEDSTOCK_ROOT}/build_artifacts
 
 CONDARC
-BUILD_CMD=build
-conda install mamba python -c conda-forge
+GET_BOA=boa
+BUILD_CMD=mambabuild
 conda install --yes --quiet "conda-forge-ci-setup=3" conda-build pip ${GET_BOA:-} -c conda-forge
 
 # set up the condarc
