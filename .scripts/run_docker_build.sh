@@ -81,6 +81,7 @@ docker run ${DOCKER_RUN_ARGS} \
            -v "${RECIPE_ROOT}":/home/conda/recipe_root:rw,z,delegated \
            -v "${FEEDSTOCK_ROOT}":/home/conda/feedstock_root:rw,z,delegated \
            -e CONFIG \
+           --privileged \
            -e HOST_USER_ID \
            -e UPLOAD_PACKAGES \
            -e IS_PR_BUILD \
