@@ -1,5 +1,11 @@
 #!/bin/bash
-set -euf
+set -xeuf
+
+# Workaround for travis permissions errors which end up creating very verbose log output
+if [[ $(uname -m) == "ppc64le" ]]; then
+    export GOPATH=${TMPDIR:-/tmp}/gopath
+    mkdir -p "${GOPATH}"
+fi
 
 pushd src/github.com/sylabs/${PKG_NAME}
 
