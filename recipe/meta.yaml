@@ -58,9 +58,8 @@ test:
     - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
 
     # UserNS test
-    # ngam: disabling this for ppc64le for now (fails with mount error)
-    # ngam: enable again
-    # ngam: try without --sandbox (--sandbox makes less sense on HPC anyway, people often use remote builder)
+    # ngam 20211115: ppc64le build without --sandbox (otherwise fails with mount problems)
+    # ngam 20211115: likely related to below issue re --privileged
     - singularity build lolcow docker://godlovedc/lolcow  # [ppc64le]
     - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [not ppc64le]
 
@@ -100,3 +99,4 @@ extra:
     - jakirkham
     - sodre
     - chrisburr
+    - ngam
