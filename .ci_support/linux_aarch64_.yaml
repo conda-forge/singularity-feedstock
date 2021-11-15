@@ -23,14 +23,12 @@ docker_image:
 libarchive:
 - '3.5'
 libuuid:
-- 2.32.1
+- '2'
 openssl:
 - 1.1.1
 pin_run_as_build:
   libuuid:
     max_pin: x
-  openssl:
-    max_pin: x.x.x
 target_platform:
 - linux-aarch64
 zip_keys:
