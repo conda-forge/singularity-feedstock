@@ -6,8 +6,8 @@ package:
 
 source:
   - folder: src/github.com/sylabs/singularity
-    url: https://github.com/hpcng/singularity/releases/download/v{{ version }}/singularity-ce-{{ version }}.tar.gz
-    sha256: b5fe7b40b5298f0085d9eb29e5e3e6b41e92293f2aaa5965a38710bf14a76925
+    url: https://github.com/hpcng/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
+    sha256: cb95e6d68b0d20f2b87d60f23a3bf707b7d3e87cee0dd4aa4380f8f481a57ebc
     patches:
       - patches/0003-Use-external-CNI.patch
       - patches/0004-Find-unsquashfs-from-PATH.diff
@@ -44,17 +44,17 @@ test:
   commands:
     - singularity --help
     # disable these tests to ensure verbosity problem isn't from here (ngam)
-#     - singularity --version
+    - singularity --version
 
-#     # Ensure the version is set correctly
-#     - singularity --version | grep {{ version }}
+    # Ensure the version is set correctly
+    - singularity --version | grep {{ version }}
 
-#     # Ensure we are using conda's CNI
-#     - test ! -d $PREFIX/libexec/singularity/cni
-#     - test -d $PREFIX/lib/cni
+    # Ensure we are using conda's CNI
+    - test ! -d $PREFIX/libexec/singularity/cni
+    - test -d $PREFIX/lib/cni
 
-#     - test ! -d $PREFIX/etc/singularity/network
-#     - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
+    - test ! -d $PREFIX/etc/singularity/network
+    - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
 
     # UserNS test
     # ngam: disabling this for ppc64le for now (fails with mount error)
