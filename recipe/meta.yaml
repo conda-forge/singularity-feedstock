@@ -43,17 +43,18 @@ requirements:
 test:
   commands:
     - singularity --help
-    - singularity --version
+    # disable these tests to ensure verbosity problem isn't from here (ngam)
+#     - singularity --version
 
-    # Ensure the version is set correctly
-    - singularity --version | grep {{ version }}
+#     # Ensure the version is set correctly
+#     - singularity --version | grep {{ version }}
 
-    # Ensure we are using conda's CNI
-    - test ! -d $PREFIX/libexec/singularity/cni
-    - test -d $PREFIX/lib/cni
+#     # Ensure we are using conda's CNI
+#     - test ! -d $PREFIX/libexec/singularity/cni
+#     - test -d $PREFIX/lib/cni
 
-    - test ! -d $PREFIX/etc/singularity/network
-    - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
+#     - test ! -d $PREFIX/etc/singularity/network
+#     - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
 
     # UserNS test
     # ngam: disabling this for ppc64le for now (fails with mount error)
