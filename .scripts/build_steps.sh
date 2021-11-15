@@ -25,8 +25,10 @@ conda-build:
  root-dir: ${FEEDSTOCK_ROOT}/build_artifacts
 
 CONDARC
-GET_BOA=boa
-BUILD_CMD=mambabuild
+# ngam: update for latest cos7
+# GET_BOA=boa
+# BUILD_CMD=mambabuild
+BUILD_CMD=build
 conda install --yes --quiet "conda-forge-ci-setup=3" conda-build pip ${GET_BOA:-} -c conda-forge
 
 # set up the condarc
