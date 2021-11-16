@@ -1,4 +1,4 @@
-{% set version = "3.7.1" %}
+{% set version = "3.8.4" %}
 
 package:
   name: singularity
@@ -6,11 +6,9 @@ package:
 
 source:
   - folder: src/github.com/sylabs/singularity
-    url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: 82d2c65063560195ec34551931be3c325b95e8e2009e92755fd7daad346e083c
+    url: https://github.com/hpcng/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
+    sha256: cb95e6d68b0d20f2b87d60f23a3bf707b7d3e87cee0dd4aa4380f8f481a57ebc
     patches:
-      - patches/0001-Make-runtime-relocatable.patch
-      - patches/0002-Fix-configuration-for-conda-forge.patch
       - patches/0003-Use-external-CNI.patch
       - patches/0004-Find-unsquashfs-from-PATH.diff
       - patches/set-version-from-env.patch
@@ -26,6 +24,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cgo') }}
+    - sysroot_linux-64 2.17  # [linux64]
     - make
     - pkg-config
     - go-dep
@@ -45,6 +44,7 @@ requirements:
 test:
   commands:
     - singularity --help
+    # disable these tests to ensure verbosity problem isn't from here (ngam)
     - singularity --version
 
     # Ensure the version is set correctly
@@ -58,7 +58,10 @@ test:
     - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
 
     # UserNS test
-    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [not aarch64]
+    # ngam 20211115: ppc64le build without --sandbox (otherwise fails with mount problems)
+    # ngam 20211115: likely related to below issue re --privileged
+    - singularity build lolcow docker://godlovedc/lolcow  # [ppc64le]
+    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [not ppc64le]
 
     # The remaining tests are disabled on ppc64le due to issues launching docker with --privileged
     # Either run the container or fail due to user namespaces being disabled
@@ -96,3 +99,4 @@ extra:
     - jakirkham
     - sodre
     - chrisburr
+    - ngam
