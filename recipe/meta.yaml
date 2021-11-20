@@ -1,16 +1,16 @@
-{% set version = "3.8.4" %}
+{% set version = "3.9.0" %}
 
 package:
-  name: singularity
+  name: singularity-ce
   version: {{ version }}
 
 source:
-  - folder: src/github.com/sylabs/singularity
-    url: https://github.com/hpcng/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: cb95e6d68b0d20f2b87d60f23a3bf707b7d3e87cee0dd4aa4380f8f481a57ebc
+  - folder: src/github.com/sylabs/singularity-ce
+    url: https://github.com/sylabs/singularity/releases/download/v{{ version }}/singularity-ce-{{ version }}.tar.gz
+    sha256: 3569928cbd907fe90c52f6a809f5f8e99f597237c5a25a9dce07e3efb3b1447a
     patches:
-      - patches/0003-Use-external-CNI.patch
-      - patches/0004-Find-unsquashfs-from-PATH.diff
+      - patches/0003-copy.patch
+      - patches/0004-copy.diff
       - patches/set-version-from-env.patch
 
 build:
