@@ -1,5 +1,5 @@
-About singularity
-=================
+About singularity-ce
+====================
 
 Home: https://www.sylabs.io/singularity/
 
@@ -105,28 +105,28 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-singularity-green.svg)](https://anaconda.org/conda-forge/singularity) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/singularity.svg)](https://anaconda.org/conda-forge/singularity) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/singularity.svg)](https://anaconda.org/conda-forge/singularity) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/singularity.svg)](https://anaconda.org/conda-forge/singularity) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-singularity--ce-green.svg)](https://anaconda.org/conda-forge/singularity-ce) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/singularity-ce.svg)](https://anaconda.org/conda-forge/singularity-ce) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/singularity-ce.svg)](https://anaconda.org/conda-forge/singularity-ce) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/singularity-ce.svg)](https://anaconda.org/conda-forge/singularity-ce) |
 
-Installing singularity
-======================
+Installing singularity-ce
+=========================
 
-Installing `singularity` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `singularity-ce` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `singularity` can be installed with:
+Once the `conda-forge` channel has been enabled, `singularity-ce` can be installed with:
 
 ```
-conda install singularity
+conda install singularity-ce
 ```
 
-It is possible to list all of the versions of `singularity` available on your platform with:
+It is possible to list all of the versions of `singularity-ce` available on your platform with:
 
 ```
-conda search singularity --channel conda-forge
+conda search singularity-ce --channel conda-forge
 ```
 
 
@@ -169,17 +169,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating singularity-feedstock
-==============================
+Updating singularity-ce-feedstock
+=================================
 
-If you would like to improve the singularity recipe or build a new
+If you would like to improve the singularity-ce recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/singularity-feedstock are
+Note that all branches in the conda-forge/singularity-ce-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
