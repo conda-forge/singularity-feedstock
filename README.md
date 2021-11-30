@@ -1,7 +1,7 @@
 About singularity
 =================
 
-Home: https://www.sylabs.io/singularity/
+Home: singularity.hpcng.org
 
 Package license: BSD-3-Clause
 
@@ -9,9 +9,9 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/singularity-fee
 
 Summary: Singularity: Application containers for Linux
 
-Development: https://github.com/singularityware/singularity
+Development: https://github.com/hpcng/singularity/blob/master/CONTRIBUTING.md
 
-Documentation: https://www.sylabs.io/docs/
+Documentation: https://singularity.hpcng.org/docs
 
 Singularity is a container platform focused on supporting "Mobility of
 Compute"
