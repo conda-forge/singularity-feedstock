@@ -1,20 +1,20 @@
-{% set version = "3.8.4" %}
+{% set version = "3.8.5" %}
 
 package:
   name: singularity
   version: {{ version }}
 
 source:
-  - folder: src/github.com/sylabs/singularity
+  - folder: src/github.com/hpcng/singularity
     url: https://github.com/hpcng/singularity/releases/download/v{{ version }}/singularity-{{ version }}.tar.gz
-    sha256: cb95e6d68b0d20f2b87d60f23a3bf707b7d3e87cee0dd4aa4380f8f481a57ebc
+    sha256: 7fff78b5c07b5d4d08269bd267ac5e994390f933321e54efd6b7c86683153ce4
     patches:
       - patches/0003-Use-external-CNI.patch
       - patches/0004-Find-unsquashfs-from-PATH.diff
       - patches/set-version-from-env.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not linux]
   # The binary is made runtime relocatable using the included patch
   detect_binary_files_with_prefix: false
@@ -72,9 +72,9 @@ test:
     - singularity --verbose --debug run -u alpine_latest.sif echo "Hello world"  # [linux64]
 
 about:
-  home: https://www.sylabs.io/singularity/
+  home: https://singularity.hpcng.org
   license: BSD-3-Clause
-  license_file: src/github.com/sylabs/singularity/LICENSE-LBNL.md
+  license_file: src/github.com/hpcng/singularity/LICENSE-LBNL.md
   summary: 'Singularity: Application containers for Linux'
 
   description: |
@@ -90,8 +90,8 @@ about:
     not apply to Singularity making it an ideal solution for users (both
     computational and non-computational) and HPC centers.
 
-  dev_url: https://github.com/singularityware/singularity
-  doc_url: https://www.sylabs.io/docs/
+  dev_url: https://github.com/hpcng/singularity/blob/master/CONTRIBUTING.md
+  doc_url: https://singularity.hpcng.org/docs
 
 extra:
   recipe-maintainers:

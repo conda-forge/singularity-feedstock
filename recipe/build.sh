@@ -7,7 +7,7 @@ if [[ $(uname -m) == "ppc64le" ]]; then
     mkdir -p "${GOPATH}"
 fi
 
-pushd src/github.com/sylabs/${PKG_NAME}
+pushd src/github.com/hpcng/${PKG_NAME}
 
 # The "starter" binary inherits the stack from "singularity" meaning FORTIFY_SOURCE cannot be used
 CGO_CPPFLAGS=$(echo "${CGO_CPPFLAGS}" | sed -E 's@FORTIFY_SOURCE=[0-9]@FORTIFY_SOURCE=0@g')

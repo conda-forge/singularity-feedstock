@@ -17,7 +17,7 @@ diff --git a/pkg/image/unpacker/squashfs_singularity.go b/pkg/image/unpacker/squ
 index 67e537259..6f108faf5 100644
 --- a/pkg/image/unpacker/squashfs_singularity.go
 +++ b/pkg/image/unpacker/squashfs_singularity.go
-@@ -31,12 +31,12 @@ func init() {
+@@ -29,12 +29,12 @@ func init() {
  
  // getLibraries returns the libraries required by the elf binary,
  // the binary path must be absolute.
@@ -32,7 +32,7 @@ index 67e537259..6f108faf5 100644
  	}
  	defer exe.Close()
  
-@@ -50,9 +50,9 @@ func getLibraries(binary string) ([]string, error) {
+@@ -48,9 +48,9 @@ func getLibraries(binary string) ([]string, error) {
  		buf := make([]byte, 4096)
  		n, err := p.ReadAt(buf, 0)
  		if err != nil && err != io.EOF {
@@ -44,7 +44,7 @@ index 67e537259..6f108faf5 100644
  		}
  		// trim null byte to avoid an execution failure with
  		// an invalid argument error
-@@ -61,7 +61,7 @@ func getLibraries(binary string) ([]string, error) {
+@@ -59,7 +59,7 @@ func getLibraries(binary string) ([]string, error) {
  
  	// this is a static binary, nothing to do
  	if interp == "" {
@@ -53,7 +53,7 @@ index 67e537259..6f108faf5 100644
  	}
  
  	// run interpreter to list library dependencies for the
-@@ -82,7 +82,7 @@ func getLibraries(binary string) ([]string, error) {
+@@ -80,7 +80,7 @@ func getLibraries(binary string) ([]string, error) {
  	cmd.Env = []string{}
  
  	if err := cmd.Run(); err != nil {
@@ -62,7 +62,7 @@ index 67e537259..6f108faf5 100644
  	}
  
  	// parse the output to get matches for ' /an/absolute/path ('
-@@ -106,7 +106,7 @@ func getLibraries(binary string) ([]string, error) {
+@@ -104,7 +104,7 @@ func getLibraries(binary string) ([]string, error) {
 		}
 	}
  
@@ -71,7 +71,7 @@ index 67e537259..6f108faf5 100644
  }
  
  // unsquashfsSandboxCmd is the command instance for executing unsquashfs command
-@@ -173,7 +173,7 @@ func unsquashfsSandboxCmd(unsquashfs string, dest string, filename string, filte
+@@ -171,7 +171,7 @@ func unsquashfsSandboxCmd(unsquashfs string, dest string, filename string, filte
  	}
  
  	// get the library dependencies of unsquashfs
@@ -80,7 +80,7 @@ index 67e537259..6f108faf5 100644
  	if err != nil {
  		return nil, err
  	}
-@@ -218,6 +218,9 @@ func unsquashfsSandboxCmd(unsquashfs string, dest string, filename string, filte
+@@ -216,6 +216,9 @@ func unsquashfsSandboxCmd(unsquashfs string, dest string, filename string, filte
  	args = append(args, rootfs)
  
  	// unsquashfs execution arguments
