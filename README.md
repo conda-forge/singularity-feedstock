@@ -1,7 +1,7 @@
 About singularity
 =================
 
-Home: singularity.hpcng.org
+Home: https://singularity.hpcng.org
 
 Package license: BSD-3-Clause
 
