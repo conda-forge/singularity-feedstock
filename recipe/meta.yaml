@@ -72,7 +72,7 @@ test:
     - singularity --verbose --debug run -u alpine_latest.sif echo "Hello world"  # [linux64]
 
 about:
-  home: singularity.hpcng.org
+  home: https://singularity.hpcng.org
   license: BSD-3-Clause
   license_file: src/github.com/hpcng/singularity/LICENSE-LBNL.md
   summary: 'Singularity: Application containers for Linux'
