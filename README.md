@@ -5,7 +5,7 @@ Home: https://singularity.hpcng.org
 
 Package license: BSD-3-Clause
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/singularity-feedstock/blob/master/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/singularity-feedstock/blob/main/LICENSE.txt)
 
 Summary: Singularity: Application containers for Linux
 
@@ -37,8 +37,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -46,43 +46,43 @@ Current build status
           <tbody><tr>
               <td>linux_64_openssl1.1.1</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master&jobName=linux&configuration=linux_64_openssl1.1.1" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main&jobName=linux&configuration=linux_64_openssl1.1.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_64_openssl3</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master&jobName=linux&configuration=linux_64_openssl3" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main&jobName=linux&configuration=linux_64_openssl3" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_aarch64_openssl1.1.1</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_openssl1.1.1" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_openssl1.1.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_aarch64_openssl3</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_openssl3" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_openssl3" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_ppc64le_openssl1.1.1</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_openssl1.1.1" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_openssl1.1.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_ppc64le_openssl3</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_openssl3" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=1918&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/singularity-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_openssl3" alt="variant">
                 </a>
               </td>
             </tr>
