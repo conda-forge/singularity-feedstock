@@ -46,8 +46,8 @@ index 67e537259..6f108faf5 100644
  
  	// this is a static binary, nothing to do
  	if interp == "" {
--		return []libBind{}, nil
-+		return interp, []libBind{}, nil
+-		return libs, nil
++		return interp, libs, nil
  	}
  
  	// run interpreter to list library dependencies for the
