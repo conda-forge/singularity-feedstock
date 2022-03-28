@@ -17,14 +17,12 @@ diff --git a/pkg/image/unpacker/squashfs_singularity.go b/pkg/image/unpacker/squ
 index 67e537259..6f108faf5 100644
 --- a/pkg/image/unpacker/squashfs_singularity.go
 +++ b/pkg/image/unpacker/squashfs_singularity.go
-@@ -29,12 +29,12 @@ func init() {
+@@ -39,10 +39,10 @@ func init() {
  
- // getLibraries returns the libraries required by the elf binary,
+ // getLibraryBinds returns the libraries required by the elf binary,
  // the binary path must be absolute.
--func getLibraries(binary string) ([]string, error) {
-+func getLibraries(binary string) (string, []string, error) {
- 	libs := make([]string, 0)
- 
+-func getLibraryBinds(binary string) ([]libBind, error) {
++func getLibraryBinds(binary string) (string, []libBind, error) { 
  	exe, err := elf.Open(binary)
  	if err != nil {
 -		return nil, err
