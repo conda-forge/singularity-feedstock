@@ -19,8 +19,8 @@ index 67e537259..6f108faf5 100644
 +++ b/pkg/image/unpacker/squashfs_singularity.go
 @@ -39,10 +39,10 @@ func init() {
  
- // getLibraryBinds returns the libraries required by the elf binary,
- // the binary path must be absolute.
+ // getLibraryBinds returns the library bind mounts required by an elf binary.
+ // The binary path must be absolute.
 -func getLibraryBinds(binary string) ([]libBind, error) {
 +func getLibraryBinds(binary string) (string, []libBind, error) { 
  	exe, err := elf.Open(binary)
