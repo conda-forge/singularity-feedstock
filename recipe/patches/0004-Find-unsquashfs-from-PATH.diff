@@ -63,6 +63,9 @@ index 67e537259..6f108faf5 100644
 @@ -100,1 +100,1 @@ func parseLibraryBinds
 -func parseLibraryBinds(buf io.Reader) ([]libBind, error) {
 +func parseLibraryBinds(buf io.Reader) (string, []libBind, error) {
+@@ -140,1 +140,1 @@
+-		return nil, fmt.Errorf("while parsing library dependencies: %v", err)
++		return interp, nil, fmt.Errorf("while parsing library dependencies: %v", err)
 @@ -141,6 +141,6 @@ func getLibraryBinds(binary string) ([]libBind, error) {
 	}
  
