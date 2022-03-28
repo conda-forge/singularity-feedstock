@@ -30,7 +30,7 @@ index 67e537259..6f108faf5 100644
  	}
  	defer exe.Close()
  
-@@ -48,9 +48,9 @@ func getLibraryBinds(binary string) ([]libBind, error) {
+@@ -56,9 +56,9 @@ func getLibraryBinds(binary string) ([]libBind, error) {
  		buf := make([]byte, 4096)
  		n, err := p.ReadAt(buf, 0)
  		if err != nil && err != io.EOF {
@@ -51,10 +51,7 @@ index 67e537259..6f108faf5 100644
  	}
  
  	// run interpreter to list library dependencies for the
-@@ -100,1 +100,1 @@ func parseLibraryBinds
--func parseLibraryBinds(buf io.Reader) ([]libBind, error) {
-+func parseLibraryBinds(buf io.Reader) (string, []libBind, error) {
-@@ -80,7 +80,7 @@ func getLibraryBinds(binary string) ([]libBind, error) {
+@@ -88,7 +88,7 @@ func getLibraryBinds(binary string) ([]libBind, error) {
  	cmd.Env = []string{}
  
  	if err := cmd.Run(); err != nil {
@@ -63,8 +60,10 @@ index 67e537259..6f108faf5 100644
  	}
  
  	// parse the output to get matches for ' /an/absolute/path ('
-@@ -104,7 +104,7 @@ func getLibraryBinds(binary string) ([]libBind, error) {
-		}
+@@ -100,1 +100,1 @@ func parseLibraryBinds
+-func parseLibraryBinds(buf io.Reader) ([]libBind, error) {
++func parseLibraryBinds(buf io.Reader) (string, []libBind, error) {
+@@ -141,6 +141,6 @@ func getLibraryBinds(binary string) ([]libBind, error) {
 	}
  
 -	return libs, nil
@@ -81,7 +80,7 @@ index 67e537259..6f108faf5 100644
  	if err != nil {
  		return nil, err
  	}
-@@ -216,6 +216,9 @@ func unsquashfsSandboxCmd(unsquashfs string, dest string, filename string, filte
+@@ -278,6 +278,9 @@ func unsquashfsSandboxCmd(unsquashfs string, dest string, filename string, filte
  	args = append(args, rootfs)
  
  	// unsquashfs execution arguments
