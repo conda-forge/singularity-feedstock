@@ -14,7 +14,7 @@ set -xeo pipefail
 THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
 PROVIDER_DIR="$(basename $THISDIR)"
 
-FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
+FEEDSTOCK_ROOT="$( cd "$( dirname "$0" )/.." >/dev/null && pwd )"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 
 if [ -z ${FEEDSTOCK_NAME} ]; then
@@ -80,7 +80,6 @@ docker pull "${DOCKER_IMAGE}"
 docker run ${DOCKER_RUN_ARGS} \
            -v "${RECIPE_ROOT}":/home/conda/recipe_root:rw,z,delegated \
            -v "${FEEDSTOCK_ROOT}":/home/conda/feedstock_root:rw,z,delegated \
-           --privileged \
            -e CONFIG \
            -e HOST_USER_ID \
            -e UPLOAD_PACKAGES \
