@@ -57,10 +57,10 @@ test:
     - test ! -d $PREFIX/etc/singularity/network
     - test -f $PREFIX/etc/cni/net.d/00_bridge.conflist
  
-disable these tests for now since they're high maintenance
-they require manual intervention in build-steps.sh or whatever
-and they almost never fail if evetyhing above is good
-ngam 20220328
+    # disable these tests for now since they're high maintenance
+    # they require manual intervention in build-steps.sh or whatever
+    # and they almost never fail if evetyhing above is good
+    # ngam 20220328
     # UserNS test
     # ngam 20211115: ppc64le build without --sandbox (otherwise fails with mount problems)
     # ngam 20211115: likely related to below issue re --privileged
