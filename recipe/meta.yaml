@@ -14,7 +14,7 @@ source:
       - patches/set-version-from-env.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
   # The binary is made runtime relocatable using the included patch
   detect_binary_files_with_prefix: false
@@ -65,7 +65,7 @@ test:
     # ngam 20211115: ppc64le build without --sandbox (otherwise fails with mount problems)
     # ngam 20211115: likely related to below issue re --privileged
     - singularity build lolcow docker://godlovedc/lolcow  # [linux64]
-    - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [linux64]
+    # - singularity build --sandbox lolcow docker://godlovedc/lolcow  # [linux64]
 
     # The remaining tests are disabled on ppc64le due to issues launching docker with --privileged
     # Either run the container or fail due to user namespaces being disabled
