@@ -227,6 +227,3 @@ Feedstock Maintainers
 * [@ngam](https://github.com/ngam/)
 * [@sodre](https://github.com/sodre/)
 
-
-<!-- dummy commit to enable rerendering -->
-
